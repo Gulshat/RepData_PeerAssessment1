@@ -7,14 +7,39 @@ output:
 
 
 ## Loading and preprocessing the data
+```{r echo=TRUE}
+unzip("activity.zip")
 
+activity <- read.csv("activity.csv")
+dim(activity)
+head(activity)
+
+```
 
 
 ## What is mean total number of steps taken per day?
 
+1) Histogram with total number of steps taken per day
+
+```{r echo=TRUE}
+activity.data <- aggregate(steps ~ date, data=activity, FUN = sum)
+
+barplot(activity.data$steps, names.arg = activity.data$date, xlab = "Date",
+        ylab = "Steps")
+```
+
+2) Calculate and report mean and median total number of steps taken per day?
+
+```{r echo=TRUE}
+print("Mean total number of steps taken per day:")
+mean(activity.data$steps)
+print("Median total number of steps taken per day:")
+median(activity.data$steps)
+```
 
 
 ## What is the average daily activity pattern?
+
 
 
 
